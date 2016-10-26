@@ -8,14 +8,35 @@
           integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <style>
         .generated-content {
-            height: 50%;
-            width: 50%;
+            height: 100%;
+            width: 100%;
             background-color: darkslategray;
+            position: relative;
         }
         .generated-content .monitor-number {
-            font-size: 30em;
+            margin: 0px;
+            padding: 0px;
+            position: absolute;
+            left: 45%;
+            top: 20%;
+            width:200px;
+            height:200px;
+        }
+
+        .generated-content .monitor-number .text {
+            font-size: 27em;
             text-align: center;
             color: aliceblue;
+        }
+
+        .textDiv_Days {
+            display: none;
+        }
+
+        .generated-content .time_circles > canvas {
+            left: 26%;
+            top: -3%;
+            position: absolute;
         }
     </style>
 </head>
@@ -45,19 +66,42 @@
             if (viewerType === 'monitor') {
                 var id = getUrlVar("id");
                 var valueElement = $(
-                        '<div class="monitor-number">' + id + '</div>');
+                        '<div class="monitor-number"><div class="text">' + id + '</div></div>');
                 $('.generated-content').html(valueElement);
 
                 var delay = getUrlVar("delay");
                 if (delay) {
                     var delayValue = parseInt(delay);
-                    $('.monitor-number').TimeCircles({
+                    //generated using http://www.jqueryrain.com/?hPHGjuOx
+                    $('.generated-content').TimeCircles({
                         start: true,
                         animation: "smooth",
                         circle_bg_color: "#FFFFFF",
-                        fg_width: 0.05,
-                        bg_width: 0.5,
-                        total_duration: delayValue
+                        //fg_width: 0.05,
+                        //bg_width: 0.5,
+                        total_duration: delayValue,
+                        "time": {
+                            "Days": {
+                                "text": "Days",
+                                "color": "#FFCC66",
+                                "show": true
+                            },
+                            "Hours": {
+                                "text": "Hours",
+                                "color": "#99CCFF",
+                                "show": false
+                            },
+                            "Minutes": {
+                                "text": "Minutes",
+                                "color": "#BBFFBB",
+                                "show": false
+                            },
+                            "Seconds": {
+                                "text": "Seconds",
+                                "color": "#FF9999",
+                                "show": false
+                            }
+                        }
                     });
                 }
 

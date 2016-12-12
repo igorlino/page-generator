@@ -96,7 +96,7 @@
 
     </style>
 </head>
-<body bgcolor="white" style="margin: 0px;padding: 0px;" >
+<body bgcolor="white" style="margin: 0px;padding: 0px;" onkeydown="event">
 
 <div class="generated-content">
 </div>
@@ -114,6 +114,14 @@
         }
 
         $(document).ready(function () {
+
+            $('body').on('keydown', function(event) {
+                if(event.which === 13) {
+                    window.close();
+                }
+                    alert("Entered!");
+            });
+
             var title = getUrlVar("title");
             if (title && title.length > 0) {
                 document.title = title;

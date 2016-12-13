@@ -115,10 +115,12 @@
         }
 
         $(document).ready(function () {
+            var group = getUrlVar("groupid");
 
             $('body').on('keydown', function(event) {
                 if(event.which === 27) {
-                    window.postMessage('close-page-generator', '*');
+                    var groupId = group ? group : '';
+                    window.postMessage('close-page-generator-' + groupId, '*');
                 }
             });
 
